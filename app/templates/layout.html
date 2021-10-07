@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% block head %}
+
+      <title>{% block title %}Simple Student Information System{% endblock %}</title>
+
+      <!-- Required Meta Tags -->
+      <meta charset="utf-8">
+      <meta name="description" content="A Flask Application for Simple Student Information Management">
+      <meta name="keywords" content="Flask">
+      <meta name="author" content="John Michael A. Bacasno">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+      {% block styles %}
+        <!-- Bootstrap CSS -->
+        {{ bootstrap.load_css() }}
+
+        <!-- Font Awesome CSS -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+        <!-- Bootstrap Table CSS -->
+        <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.css">
+      {% endblock %}
+
+    {% endblock %}
+  </head>
+  <body>
+    <!-- Addtional style -->
+    {% include "style.html" %}
+
+    <!-- Page content -->
+    {% block content %}{% endblock %}
+        
+    {% block scripts %}
+      <!-- Boostrap JS -->
+      {{ bootstrap.load_js() }}
+
+      <!-- Bootstrap Table JS -->
+      <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script>
+
+      <!-- Bootstrap Table Extension JS -->
+      <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/extensions/toolbar/bootstrap-table-toolbar.min.js"></script>
+    {% endblock %}
+  </body>
+</html>
