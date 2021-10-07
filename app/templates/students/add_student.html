@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+
+{% from "bootstrap/form.html" import render_form_row %}
+
+{% block title %}Add Student{% endblock %}
+
+{% block content %}
+  <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="">Student Information System</a>
+  </nav>
+  <div class="container-fluid">
+    <div class="row">
+      <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+        <div class="sidebar-sticky">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link" href="/home">
+                <i class="fas fa-home"></i>
+                Dashboard
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="/students/students_content">
+                <span class="fas fa-user-graduate"></span>
+                Students <span class="sr-only">
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/courses/courses_content">
+                <span class="fas fa-chalkboard"></span>
+                Courses
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/colleges/colleges_content">
+                <span class="fas fa-university"></span>
+                Colleges
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Add Student</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+          <div class="btn-group mr-2">
+            <form action="/students/students_content">
+              <button type="submit" class="btn btn-sm btn-outline-secondary">Back</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid my-5">
+        <form method="POST" action="/students/add_student">
+          {{ form.csrf_token() }}
+          {{ render_form_row([form.id]) }}
+          {{ render_form_row([form.first_name]) }}
+          {{ render_form_row([form.middle_name]) }}
+          {{ render_form_row([form.last_name]) }}
+          {{ render_form_row([form.course, form.year], col_map={"course": "col-md-8", "year": "col-md-4"}) }}
+          {{ render_form_row([form.birth_date]) }}
+          {{ render_form_row([form.birth_place]) }}
+          {{ render_form_row([form.sex, form.gender], col_map={"sex": "col-md-4", "gender": "col-md-8"}) }}
+          {{ render_form_row([form.civil_status]) }}
+          {{ render_form_row([form.citizenship]) }}
+          {{ render_form_row([form.address]) }}
+          {{ render_form_row([form.contact_number]) }}
+          {{ render_form_row([form.submit]) }}
+        </form>
+      </div>
+    </main>
+  </div>
+{% endblock %}
