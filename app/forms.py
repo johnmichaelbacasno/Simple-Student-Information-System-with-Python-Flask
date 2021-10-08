@@ -130,6 +130,7 @@ class StudentForm(FlaskForm):
         )
 
     submit = SubmitField(label=('Submit'))
+
 class CourseForm(FlaskForm):
     code = StringField(
         label=('Code'),
