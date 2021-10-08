@@ -1,9 +1,10 @@
 from flask import Blueprint, render_template, request, redirect, flash
+import pymysql
 
 from extensions import db
 
 from .. forms import CollegeForm
-from .. manage import *
+from .. manage import available_colleges
 
 colleges = Blueprint('colleges', __name__, url_prefix='/colleges')
 
@@ -93,5 +94,5 @@ def delete_college(code):
         flash('College deleted successfully!', 'success')
 
         return redirect('/colleges/colleges_content')
-    except Exception as e:
-        print(e)
+    except Exception as exception:
+        print(exception)
