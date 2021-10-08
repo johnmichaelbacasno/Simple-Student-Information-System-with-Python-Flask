@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template
 
-from .. manage import *
+from .. manage import count_students, count_courses, count_colleges
 
 dashboard = Blueprint('dashboard', __name__)
 
