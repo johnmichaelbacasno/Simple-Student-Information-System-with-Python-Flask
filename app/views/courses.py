@@ -3,7 +3,7 @@ import pymysql
 
 from extensions import db
 
-from .. forms import CourseForm
+from .. forms import CourseAddForm, CourseEditForm
 from .. manage import available_courses, college_options
 
 courses = Blueprint('courses', __name__, url_prefix='/courses')
@@ -14,7 +14,7 @@ def courses_content():
 
 @courses.route('/add_course', methods=['GET', 'POST'])
 def add_course():
-    form = CourseForm()
+    form = CourseAddForm()
     form.college.choices += college_options()
     try:
         if form.validate_on_submit():
@@ -45,7 +45,6 @@ def add_course():
     except Exception as exception:
         return str(exception)
 
-
 @courses.route('/edit_course/<string:code>', methods=['GET', 'POST'])
 def edit_course(code):
     try:
@@ -56,7 +55,7 @@ def edit_course(code):
         cursor.close()
         conn.close()
 
-        form = CourseForm(data=row)
+        form = CourseEditForm(data=row)
         form.college.choices += college_options()
 
         if form.validate_on_submit():		
