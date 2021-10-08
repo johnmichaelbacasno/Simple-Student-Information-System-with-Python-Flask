@@ -56,6 +56,33 @@ def count_colleges():
     conn.close()
     return colleges['Count']
 
+def student_exists(id):
+    conn = db.connect()
+    cursor = conn.cursor(pymysql.cursors.DictCursor)
+    cursor.execute("SELECT * FROM `Student` where id=%s", (id,))
+    student = cursor.fetchone()
+    cursor.close()
+    conn.close()
+    return bool(student)
+
+def course_exists(code):
+    conn = db.connect()
+    cursor = conn.cursor(pymysql.cursors.DictCursor)
+    cursor.execute("SELECT * FROM `Course` where code=%s", (code,))
+    course = cursor.fetchone()
+    cursor.close()
+    conn.close()
+    return bool(course)
+
+def college_exists(code):
+    conn = db.connect()
+    cursor = conn.cursor(pymysql.cursors.DictCursor)
+    cursor.execute("SELECT * FROM `College` where code=%s", (code,))
+    college = cursor.fetchone()
+    cursor.close()
+    conn.close()
+    return bool(college)
+
 def course_options():
     conn = db.connect()
     cursor = conn.cursor()
