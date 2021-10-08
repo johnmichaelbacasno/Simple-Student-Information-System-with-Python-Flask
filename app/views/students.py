@@ -3,7 +3,7 @@ import pymysql
 
 from extensions import db
 
-from .. forms import StudentForm
+from .. forms import StudentAddForm, StudentEditForm
 from .. manage import available_students, course_options
 
 students = Blueprint('students', __name__, url_prefix='/students')
@@ -14,7 +14,7 @@ def students_content():
 
 @students.route('/add_student', methods=['GET', 'POST'])
 def add_student():
-    form = StudentForm()
+    form = StudentAddForm()
     form.course.choices += course_options()
     try:
         if form.validate_on_submit():
@@ -65,7 +65,7 @@ def edit_student(id):
         cursor.close()
         conn.close()
 
-        form = StudentForm(data=row)
+        form = StudentEditForm(data=row)
         form.course.choices += course_options()
 
         if form.validate_on_submit():
