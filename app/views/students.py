@@ -3,7 +3,7 @@ from flask import Blueprint, render_template, request, redirect, flash
 from extensions import db
 
 from .. forms import StudentForm
-from .. manage import *
+from .. manage import available_students, course_options
 
 students = Blueprint('students', __name__, url_prefix='/students')
 
