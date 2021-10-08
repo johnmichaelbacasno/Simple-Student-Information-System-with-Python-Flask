@@ -3,7 +3,7 @@ import pymysql
 
 from extensions import db
 
-from .. forms import CollegeForm
+from .. forms import CollegeAddForm, CollegeEditForm
 from .. manage import available_colleges
 
 colleges = Blueprint('colleges', __name__, url_prefix='/colleges')
@@ -14,7 +14,7 @@ def colleges_content():
 
 @colleges.route('/add_college', methods=['GET', 'POST'])
 def add_college():
-    form = CollegeForm()
+    form = CollegeAddForm()
     try:
         if form.validate_on_submit():
             query = """
@@ -42,7 +42,6 @@ def add_college():
     except Exception as exception:
         return str(exception)
 
-
 @colleges.route('/edit_college/<string:code>', methods=['GET', 'POST'])
 def edit_college(code):
     try:
@@ -53,7 +52,7 @@ def edit_college(code):
         cursor.close()
         conn.close()
 
-        form = CollegeForm(data=row)
+        form = CollegeEditForm(data=row)
 
         if form.validate_on_submit():		
             query = """
