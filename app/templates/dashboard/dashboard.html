@@ -48,7 +48,7 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Students</h5>
-              <p class="card-text">There are currently {{ count_students }} students.</p>
+              <p class="card-text">There are currently {{ count_students }} student{{ 's' if count_students > 1  else '' }}.</p>
               <a href="/students/students_content" class="btn btn-outline-primary">View Students</a>
             </div>
           </div>
@@ -57,7 +57,7 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Courses</h5>
-              <p class="card-text">There are currently {{ count_courses }} courses.</p>
+              <p class="card-text">There are currently {{ count_courses }} course{{ 's' if count_courses > 1  else '' }}.</p>
               <a href="/courses/courses_content" class="btn btn-outline-primary">View Courses</a>
             </div>
           </div>
@@ -66,7 +66,7 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Colleges</h5>
-              <p class="card-text">There are currently {{ count_students }} colleges.</p>
+              <p class="card-text">There are currently {{ count_colleges }} college{{ 's' if count_colleges > 1  else '' }}.</p>
               <a href="/colleges/colleges_content" class="btn btn-outline-primary">View Colleges</a>
             </div>
           </div>
