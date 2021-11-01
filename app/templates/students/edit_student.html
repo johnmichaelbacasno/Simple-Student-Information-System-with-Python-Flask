@@ -55,8 +55,12 @@
       </div>
       <div>{{ render_messages() }}</div>
       <div class="container-fluid my-5">
-        <form method="POST" action="/students/edit_student/{{ form.id.data }}">
+        <form method="POST" action="/students/edit_student/{{ form.id.data }}" enctype="multipart/form-data">
           {{ form.csrf_token() }}
+          <p>
+            <img src="{{ image_url }}" alt="Not Found" onerror=this.src="https://res.cloudinary.com/johnmichaelbacasno/image/upload/t_media_lib_thumb/v1635741147/ssis/student_images/student_image_not_found.png" width="100" height="100" style="border-radius: 50%;">
+          </p>
+          {{ render_form_row([form.image_file]) }}
           {{ render_form_row([form.first_name]) }}
           {{ render_form_row([form.middle_name]) }}
           {{ render_form_row([form.last_name]) }}
