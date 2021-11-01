@@ -94,7 +94,7 @@
             {% for student in data %}
               <tr>
                 <td>
-                  <img src="{{ student["image_url"] }}" alt="Not Found" onerror=this.src="https://res.cloudinary.com/johnmichaelbacasno/image/upload/t_media_lib_thumb/v1635741147/ssis/student_images/student_image_not_found.png" width="100" height="100" style="border-radius: 50%;">
+                  <img src="{{ student["image_url"] }}" alt="Not Found" onerror=this.src="{{ images['alternate_image_url']}}" width="100" height="100" style="border-radius: 50%;">
                 </td>
                 <td>{{ student["id"] }}</td>
                 <td>{{ student["first_name"] }} {{ student["middle_name"][0] }}. {{ student["last_name"] }}</td>
