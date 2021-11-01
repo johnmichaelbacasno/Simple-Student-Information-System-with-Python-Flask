@@ -1,11 +1,19 @@
 from flask import Markup
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField, DateField, SelectField, SubmitField
+from flask_wtf.file import FileField, FileAllowed, FileRequired
 from wtforms.validators import ValidationError, DataRequired, Regexp, NumberRange
 
 from . manage import student_exists, course_exists, college_exists
 
 class StudentForm(FlaskForm):
+    image_file = FileField(
+        label=('Image'),
+        validators=[
+            FileAllowed(['jpg'], 'Only accepts images with JPG format.')
+            ],
+        render_kw={'type':'file'})
+
     id = StringField(
         label=('ID Number'),
         validators=[
@@ -15,9 +23,7 @@ class StudentForm(FlaskForm):
                 message='Enter a valid student ID number.'
                 )
             ],
-        render_kw={
-            'type':'text',
-            }
+        render_kw={'type':'text'}
         )
     
     first_name = StringField(
