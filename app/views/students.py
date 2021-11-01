@@ -8,11 +8,14 @@ from cloudinary.utils import cloudinary_url
 from .. forms import StudentAddForm, StudentEditForm
 from .. manage import available_students, course_options
 
+STUDENT_IMAGES_FOLDER_URL = f'https://res.cloudinary.com/{cloudinary.config().cloud_name}/image/upload/ssis/student_images'
+
 students = Blueprint('students', __name__, url_prefix='/students')
 
 @students.route('/students_content')
 def students_content():
-    return render_template('students/students.html', data=available_students())
+    images = {'alternate_image_url' : f'{STUDENT_IMAGES_FOLDER_URL}/student_image_not_found.jpg'}
+    return render_template('students/students.html', data=available_students(), images=images)
 
 @students.route('/add_student', methods=['GET', 'POST'])
 def add_student():
@@ -25,7 +28,7 @@ def add_student():
                 VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
                 """
             
-            image_url, _ = cloudinary_url(f'{form.id.data}.jpg')
+            image_url = f'{STUDENT_IMAGES_FOLDER_URL}/{form.id.data}.jpg'
 
             data = (
                 form.id.data,
@@ -73,12 +76,10 @@ def edit_student(id):
         cursor.close()
         conn.close()
         
-        conn = db.connect()
-        cursor = conn.cursor()
-        cursor.execute("SELECT `image_url` FROM `Student` WHERE `id` = %s", (id,))
-        image_url = cursor.fetchone()[0]
-        cursor.close()
-        conn.close()
+        images = {
+            'student_image_url': f'{STUDENT_IMAGES_FOLDER_URL}/{id}.jpg',
+            'alternate_image_url' : f'{STUDENT_IMAGES_FOLDER_URL}/student_image_not_found.jpg'
+            }
         
         form = StudentEditForm(data=row)
         form.course.choices += course_options()
@@ -118,7 +119,7 @@ def edit_student(id):
 			
             flash('Student updated successfully!', 'success')
 
-        return render_template('students/edit_student.html', form=form, image_url=image_url)
+        return render_template('students/edit_student.html', form=form, images=images)
     except Exception as exception:
         return str(exception)
 
