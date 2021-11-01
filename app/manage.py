@@ -6,7 +6,7 @@ def available_students():
     conn = db.connect()
     cursor = conn.cursor(pymysql.cursors.DictCursor)
     cursor.execute("""
-        SELECT Student.id, Student.first_name, Student.middle_name, Student.last_name, Course.name AS `course`, Student.year, Student.birth_date, Student.birth_place, Student.sex, Student.gender, Student.civil_status, Student.citizenship, Student.address, Student.contact_number
+        SELECT Student.id, Student.first_name, Student.middle_name, Student.last_name, Course.name AS `course`, Student.year, Student.birth_date, Student.birth_place, Student.sex, Student.gender, Student.civil_status, Student.citizenship, Student.address, Student.contact_number, Student.image_url
         FROM `Student`
         LEFT JOIN `Course` ON Student.course = Course.code
         ORDER BY Student.id;
