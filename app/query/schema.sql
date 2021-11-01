@@ -31,6 +31,7 @@ CREATE TABLE `Student` (
     `citizenship` VARCHAR(20) NOT NULL,
     `address` VARCHAR(75) NOT NULL,
     `contact_number` VARCHAR(15) NOT NULL,
+    `image_url` varchar(255),
     PRIMARY KEY (`id`),
     FOREIGN KEY (`course`) REFERENCES `Course` (`code`)
 );
