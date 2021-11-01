@@ -73,6 +73,7 @@
           data-page-list="[5, 10, 25, 50, 100, all]">
           <thead>
             <tr>
+              <th data-visible="true" data-sortable="false" data-searchable="false">Profile</th>
               <th data-field="id" data-visible="true" data-sortable="true" data-searchable="true">ID</th>
               <th data-field="name" data-visible="true" data-sortable="true" data-searchable="true">Name</th>
               <th data-field="course" data-visible="true" data-sortable="true" data-searchable="true">Course</th>
@@ -92,6 +93,9 @@
           <tbody>
             {% for student in data %}
               <tr>
+                <td>
+                  <img src="{{ student["image_url"] }}" alt="Not Found" onerror=this.src="https://res.cloudinary.com/johnmichaelbacasno/image/upload/t_media_lib_thumb/v1635741147/ssis/student_images/student_image_not_found.png" width="100" height="100" style="border-radius: 50%;">
+                </td>
                 <td>{{ student["id"] }}</td>
                 <td>{{ student["first_name"] }} {{ student["middle_name"][0] }}. {{ student["last_name"] }}</td>
                 <td>{{ student["course"] }}</td>
