@@ -8,12 +8,13 @@ from . manage import student_exists, course_exists, college_exists
 
 class StudentForm(FlaskForm):
     image_file = FileField(
-        label=('Image'),
+        label=('Upload Image'),
         validators=[
             FileAllowed(['jpg'], 'Only accepts images with JPG format.')
             ],
-        render_kw={'type':'file'})
-
+        render_kw={'type': 'file'}
+        )
+    
     id = StringField(
         label=('ID Number'),
         validators=[
