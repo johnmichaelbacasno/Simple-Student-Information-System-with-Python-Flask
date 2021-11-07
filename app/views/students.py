@@ -133,6 +133,8 @@ def delete_student(id):
         cursor.close() 
         conn.close()
 
+        cloudinary.uploader.destroy(f"ssis/student_images/{id}", resource_type='image', type='upload')
+        
         flash('Students deleted successfully!', 'success')
         
         return redirect('/students/students_content')
