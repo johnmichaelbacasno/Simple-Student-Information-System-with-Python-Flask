@@ -22,4 +22,4 @@ VALUES('BSIS', 'Bachelor of Science in Information System', 'CCS');
 /*Students*/
 
 INSERT INTO `Student`(`id`, `first_name`, `middle_name`, `last_name`, `course`, `year`, `birth_date`, `birth_place`, `sex`, `gender`, `civil_status`, `citizenship`, `address`, `contact_number`, `image_url`)
-VALUES('2000-0001', 'Kyle', 'Evan', 'Sebastian', 'BSCS', 3, '2000-07-18', 'Quezon City', 'Male', 'Heterosexual', 'Single', 'Filipino', 'Quezon City', '09000000000', 'https://res.cloudinary.com/johnmichaelbacasno/image/upload/v1635741557/ssis/student_images/2000-0001.jpg');
+VALUES('2000-0001', 'Kyle', 'Evan', 'Sebastian', 'BSCS', 3, '2000-07-18', 'Quezon City', 'Male', 'Heterosexual', 'Single', 'Filipino', 'Quezon City', '09000000000', 'https://res.cloudinary.com/johnmichaelbacasno/image/upload/ssis/student_images/2000-0001.jpg');
