@@ -55,7 +55,7 @@
       <div class="container-fluid my-5">
         <form method="POST" action="/students/add_student" enctype="multipart/form-data">
           {{ form.csrf_token() }}
-          {{ render_form_row([form.image_file]) }}
+          {{ render_form_row([form.image_file], col_map={"image_file": "col-md-4"}) }}
           {{ render_form_row([form.id]) }}
           {{ render_form_row([form.first_name]) }}
           {{ render_form_row([form.middle_name]) }}
